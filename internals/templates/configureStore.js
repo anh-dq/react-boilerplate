@@ -47,10 +47,10 @@ export default function configureStore(initialState = {}, history) {
   store.injectedReducers = {}; // Reducer registry
   store.injectedSagas = {}; // Saga registry
 
-  // Make reducers hot reloadable, see http://mxs.is/googmo
+  // Make reducers hot reloadable (Vite HMR)
   /* istanbul ignore next */
-  if (module.hot) {
-    module.hot.accept('./reducers', () => {
+  if (import.meta.hot) {
+    import.meta.hot.accept('./reducers', () => {
       store.replaceReducer(createReducer(store.injectedReducers));
     });
   }

@@ -31,7 +31,7 @@ import 'file-loader?name=.htaccess!./.htaccess';
 import configureStore from './configureStore';
 
 // Import i18n messages
-import { translationMessages } from './i18n';
+import { translationMessages } from './i18n.mjs';
 
 // Create redux store with history
 const initialState = {};
@@ -51,11 +51,9 @@ const render = messages => {
   );
 };
 
-if (module.hot) {
-  // Hot reloadable React components and translation json files
-  // modules.hot.accept does not accept dynamic dependencies,
-  // have to be constants at compile-time
-  module.hot.accept(['./i18n', 'containers/App'], () => {
+if (import.meta.hot) {
+  // Hot reloadable React components and translation json files (Vite HMR)
+  import.meta.hot.accept(() => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
     render(translationMessages);
   });

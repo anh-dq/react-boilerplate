@@ -8,7 +8,7 @@ import { changeLocale } from '../../LanguageProvider/actions';
 import LanguageProvider from '../../LanguageProvider';
 
 import configureStore from '../../../configureStore';
-import { translationMessages } from '../../../i18n';
+import { translationMessages } from '../../../i18n.mjs';
 
 describe('<LocaleToggle />', () => {
   let store;
